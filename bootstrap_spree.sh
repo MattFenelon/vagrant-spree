@@ -45,6 +45,11 @@ else
     rbenv global $RUBY_VERSION
 fi
 
+# Install SQLlite - required for new Rails sites 
+sudo apt-get install libsqlite3-dev
+# Install node.js - required for new Rails sites
+sudo apt-get install nodejs -y
+
 # Ruby on Rails
 if $(gem list "rails" -v $RAILS_VERSION --installed); then
     echo "Skipping installation of Ruby on Rails $RAILS_VERSION as it's already installed."
