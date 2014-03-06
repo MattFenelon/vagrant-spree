@@ -66,6 +66,24 @@ else
     gem install bundler
 fi
 
+# ImageMagick. A dependency of Spree.
+identify -version
+if [ $? == 0 ]; then
+    echo "Skipping ImageMagick installation as it's already installed."
+else
+    rm -r tmp-ImageMagick
+    mkdir tmp-ImageMagick
+    pushd tmp-ImageMagick
+
+    wget --no-verbose http://mirrors-uk.go-parts.com/mirrors/ImageMagick/ImageMagick.tar.bz2
+    tar -xjf ImageMagick.tar.bz2 --strip=1
+
+    ./configure
+    make
+    sudo make install
+fi
+popd
+
 # Spree
 if $(gem list "spree_cmd" -v "~>$SPREE_VERSION" --installed); then
     echo "Skipping installation of spree_cmd $SPREE_VERSION as it's already installed."
