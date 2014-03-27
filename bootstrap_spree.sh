@@ -37,7 +37,7 @@ if [ $(rbenv version-name) == $RUBY_VERSION ]; then
 else
     echo "Installing Ruby $RUBY_VERSION"
     # Suggested packages for Ruby
-    sudo apt-get install autoconf bison build-essential libssl-dev libyaml-dev libreadline6 libreadline6-dev zlib1g zlib1g-dev
+    sudo apt-get install -y autoconf bison build-essential libssl-dev libyaml-dev libreadline6 libreadline6-dev zlib1g zlib1g-dev
 
     # Install Ruby (--keep causes ruby-build to not delete the source for Ruby)
     rbenv install $RUBY_VERSION --keep
@@ -46,9 +46,9 @@ else
 fi
 
 # Install SQLlite - required for new Rails sites 
-sudo apt-get install libsqlite3-dev
+sudo apt-get install -y libsqlite3-dev
 # Install node.js - required for new Rails sites
-sudo apt-get install nodejs -y
+sudo apt-get install -y nodejs
 
 # Ruby on Rails
 if $(gem list "rails" -v $RAILS_VERSION --installed); then
