@@ -58,11 +58,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # information on available options.
 
   config.vm.provision :shell, :path => "bootstrap.sh", :privileged => false
-  config.vm.provision :shell, :path => "bootstrap_postgres.sh"
   config.vm.provision :shell, :path => "bootstrap_spree.sh", :privileged => false
-
-  # PostgreSQL port
-  config.vm.network :forwarded_port, guest: 5432, host: 15432
 
   # Default RoR port
   config.vm.network :forwarded_port, guest: 3000, host: 30000
