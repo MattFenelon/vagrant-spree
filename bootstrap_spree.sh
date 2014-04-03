@@ -75,7 +75,7 @@ else
     mkdir tmp-ImageMagick
     pushd tmp-ImageMagick
 
-    wget --no-verbose http://mirrors-uk.go-parts.com/mirrors/ImageMagick/ImageMagick.tar.bz2
+    wget --no-verbose http://www.imagemagick.org/download/ImageMagick.tar.bz2
     tar -xjf ImageMagick.tar.bz2 --strip=1
 
     ./configure
