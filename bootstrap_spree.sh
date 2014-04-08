@@ -41,11 +41,11 @@ else
 
     # Install Ruby (--keep causes ruby-build to not delete the source for Ruby)
     rbenv install $RUBY_VERSION --keep
-    # Set the system Ruby to version 2.1.1
+    # Set the system Ruby to the version that was just installed
     rbenv global $RUBY_VERSION
 fi
 
-# Install SQLlite - required for new Rails sites 
+# Install SQLlite - required for new Rails sites
 sudo apt-get install -y libsqlite3-dev
 # Install node.js - required for new Rails sites
 sudo apt-get install -y nodejs
