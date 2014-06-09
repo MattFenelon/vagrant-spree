@@ -5,61 +5,30 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  # All Vagrant configuration is done here. The most common configuration
-  # options are documented and commented below. For a complete reference,
-  # please see the online documentation at vagrantup.com.
-
-  # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "precise64"
-
-  # The url from where the 'config.vm.box' box will be fetched if it
-  # doesn't already exist on the user's system.
-  config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
-
-  # Create a forwarded port mapping which allows access to a specific port
-  # within the machine from a port on the host machine. In the example below,
-  # accessing "localhost:8080" will access port 80 on the guest machine.
-  # config.vm.network :forwarded_port, guest: 80, host: 8080
+  config.vm.box = "ubuntu/trusty64"
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
-  # config.vm.network :private_network, ip: "192.168.33.10"
+  config.vm.network "private_network", ip: "192.168.109.2"
 
-  # Create a public network, which generally matched to bridged network.
-  # Bridged networks make the machine appear as another physical device on
-  # your network.
-  # config.vm.network :public_network
+  config.vm.synced_folder ".", "/vagrant", type: "nfs"
 
-  # If true, then any SSH connections made will enable agent forwarding.
-  # Default value: false
-  # config.ssh.forward_agent = true
-
-  # Share an additional folder to the guest VM. The first argument is
-  # the path on the host to the actual folder. The second argument is
-  # the path on the guest to mount the folder. And the optional third
-  # argument is a set of non-required options.
-  config.vm.synced_folder "../", "/code"
-
-  # Provider-specific configuration so you can fine-tune various
-  # backing providers for Vagrant. These expose provider-specific options.
-  # Example for VirtualBox:
-  #
-  config.vm.provider :virtualbox do |vb|
-    # Don't boot with headless mode
-    # vb.gui = true
-  
-    # Use VBoxManage to customize the VM. For example to change memory:
-    vb.customize ["modifyvm", :id, "--memory", "2048"]
+  config.vm.provider "virtualbox" do |vb|
     vb.customize ["modifyvm", :id, "--pae", "on"]
+    vb.customize ["modifyvm", :id, "--memory", "2048"]
     vb.customize ["modifyvm", :id, "--cpus", "2"]
   end
-  #
-  # View the documentation for the provider you're using for more
-  # information on available options.
 
-  config.vm.provision :shell, :path => "bootstrap.sh", :privileged => false
-  config.vm.provision :shell, :path => "bootstrap_spree.sh", :privileged => false
+  config.vm.provision :shell, :path => "provision_scripts/bootstrap.sh", :privileged => false
+  config.vm.provision :shell, :path => "provision_scripts/install_git.sh", :privileged => false
+  config.vm.provision :shell, :path => "provision_scripts/install_ruby.sh", :privileged => false
+  config.vm.provision :shell, :path => "provision_scripts/install_rails.sh", :privileged => false
+  config.vm.provision :shell, :path => "provision_scripts/install_spree.sh", :privileged => false
+  config.vm.provision :shell, :path => "provision_scripts/install_postgres.sh", :privileged => true
 
-  # Default RoR port
-  config.vm.network :forwarded_port, guest: 3000, host: 30000
+  # Uncomment this line if you have edited the setup_spree_store.sh script to point to
+  # the location of your Spree store's source and want a test database configured.
+  # config.vm.provision :shell, :path => "provision_scripts/setup_spree_store.sh", :privileged => false
+
+  # config.vm.network :forwarded_port, guest: 3000, host: 30000
 end
