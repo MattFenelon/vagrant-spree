@@ -5,7 +5,7 @@
 # Note: This script only works for Ruby 2.1.1.
 # See the Ruby installation part to make it compatible for
 # later versions.
-RUBY_VERSION="2.1.1"
+RUBY_VERSION="2.1.2"
 
 if [ -d ~/.rbenv ]; then
     echo "Skipping rbenv installation as it's already installed"
@@ -52,11 +52,7 @@ else
     sudo apt-get install -y autoconf bison build-essential curl libssl-dev libyaml-dev libreadline-dev libreadline6 libreadline6-dev libsqlite3-dev sqlite3 zlib1g zlib1g-dev libxml2-dev libxslt1-dev zlib1g-dev
 
     # Install Ruby (--keep causes ruby-build to not delete the source for Ruby)
-    # The curl part is required due to a bug in a library in Ubuntu 14.04.
-    # This should be fixed in Ruby 2.1.2.
-    curl -fsSL https://gist.github.com/mislav/a18b9d7f0dc5b9efc162.txt | rbenv install --patch 2.1.1 --keep
-    # This line can be uncommented when using Ruby 2.1.2
-    # rbenv install $RUBY_VERSION --keep
+    rbenv install $RUBY_VERSION --keep
 
     # Set the system Ruby to the version that was just installed
     rbenv global $RUBY_VERSION

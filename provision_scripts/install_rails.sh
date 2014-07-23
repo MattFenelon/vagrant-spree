@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-RAILS_VERSION="4.1.0"
+RAILS_VERSION="4.1.4"
 
 # Install SQLlite - required for new Rails sites
 sudo apt-get install -y libsqlite3-dev
