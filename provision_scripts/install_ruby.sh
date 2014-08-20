@@ -8,7 +8,10 @@
 RUBY_VERSION="2.1.2"
 
 if [ -d ~/.rbenv ]; then
-    echo "Skipping rbenv installation as it's already installed"
+    echo "Updating rbenv installation"
+
+    pushd ~/.rbenv && git pull
+    popd
 else
     echo 'Installing rbenv'
     # rbenv is used to install Ruby
@@ -36,7 +39,10 @@ fi
 source .bashrc
 
 if [ -d ~/.rbenv/plugins/ruby-build ]; then
-    echo "Skipping ruby-build plugin installation as it's already installed"
+    echo "Updating ruby-build plugin installation"
+
+    pushd ~/.rbenv/plugins/ruby-build && git pull
+    popd
 else
     echo 'Installing ruby-build plugin'
     # Install ruby-build plugin for rbenv to install Ruby
