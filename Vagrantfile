@@ -17,6 +17,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.customize ["modifyvm", :id, "--pae", "on"]
     vb.customize ["modifyvm", :id, "--memory", "2048"]
     vb.customize ["modifyvm", :id, "--cpus", "1"]
+    # Force the box into 64 bit mode. For some reason the Ubuntu box
+    # isn't configured correctly.
+    vb.customize ["modifyvm", :id, "--ostype", "Ubuntu_64"]
   end
 
   config.vm.provision :shell, :path => "provision_scripts/bootstrap.sh", :privileged => false
