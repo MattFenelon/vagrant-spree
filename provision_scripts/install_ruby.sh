@@ -5,7 +5,7 @@
 # Note: This script only works for Ruby 2.1.1.
 # See the Ruby installation part to make it compatible for
 # later versions.
-RUBY_VERSION="2.1.2"
+RUBY_VERSION="2.1.4"
 
 if [ -d ~/.rbenv ]; then
     echo "Updating rbenv installation"
