@@ -2,10 +2,7 @@
 
 ## Ruby ##
 
-# Note: This script only works for Ruby 2.1.1.
-# See the Ruby installation part to make it compatible for
-# later versions.
-RUBY_VERSION="2.1.4"
+RUBY_VERSION="2.2.1"
 
 if [ -d ~/.rbenv ]; then
     echo "Updating rbenv installation"
@@ -55,10 +52,10 @@ else
     echo "Installing Ruby $RUBY_VERSION"
 
     # Suggested packages for Ruby
-    sudo apt-get install -y autoconf bison build-essential curl libssl-dev libyaml-dev libreadline-dev libreadline6 libreadline6-dev libsqlite3-dev sqlite3 zlib1g zlib1g-dev libxml2-dev libxslt1-dev zlib1g-dev
+    sudo apt-get install -y autoconf bison build-essential curl libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev
 
     # Install Ruby (--keep causes ruby-build to not delete the source for Ruby)
-    rbenv install $RUBY_VERSION --keep
+    RUBY_CONFIGURE_OPTS=--enable-shared rbenv install $RUBY_VERSION --keep
 
     # Set the system Ruby to the version that was just installed
     rbenv global $RUBY_VERSION
@@ -80,5 +77,6 @@ if [ $(gem list "foreman" --installed) ]; then
 else
     echo "Installing Foreman"
     gem install foreman
-    rbenv rehash
 fi
+
+rbenv rehash
