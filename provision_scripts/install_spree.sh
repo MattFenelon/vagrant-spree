@@ -14,6 +14,3 @@ if which phantomjs > /dev/null; then
 else
   sudo apt-get install -y -q=1 phantomjs
 fi
-
-# Install SQLlite - required for new Rails sites
-sudo apt-get install -y -q=1 libmysqlclient-dev
