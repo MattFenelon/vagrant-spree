@@ -28,10 +28,4 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision :shell, :path => "provision_scripts/install_rails.sh", :privileged => false
   config.vm.provision :shell, :path => "provision_scripts/install_spree.sh", :privileged => false
   config.vm.provision :shell, :path => "provision_scripts/install_postgres.sh", :privileged => true
-
-  # Uncomment this line if you have edited the setup_spree_store.sh script to point to
-  # the location of your Spree store's source and want a test database configured.
-  # config.vm.provision :shell, :path => "provision_scripts/setup_spree_store.sh", :privileged => false
-
-  # config.vm.network :forwarded_port, guest: 3000, host: 30000
 end
