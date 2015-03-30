@@ -65,7 +65,8 @@ fi
 
 # Bundler
 if [ $(gem list "bundler" --installed) ]; then
-    echo "Skipping installation of Bundler as it's already installed."
+    echo "Updating bundler"
+    gem update bundler
 else
     echo "Installing Bundler"
     gem install bundler
@@ -73,7 +74,8 @@ fi
 
 # Foreman
 if [ $(gem list "foreman" --installed) ]; then
-    echo "Skipping installation of Foreman as it's already installed."
+    echo "Updating foreman"
+    gem update foreman
 else
     echo "Installing Foreman"
     gem install foreman
